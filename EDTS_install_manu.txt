@@ -1,0 +1,34 @@
+
+.emacs
+------------------------------------
+(when (>= emacs-major-version 24)
+  (require 'package)
+  (package-initialize)
+  (add-to-list 'package-archives '("melpa" . "http://melpa.milkbox.net/packages/") t)
+  )
+(add-to-list 'package-archives '("elpa" . "http://elpa.gnu.org/packages/"))
+
+(add-hook 'after-init-hook 'my-after-init-hook)
+(defun my-after-init-hook ()
+  (require 'edts-start))
+-----------------------------------------
+
+run emacs
+------------------------
+M-x package-install <RET> use-package
+M-x package-install <RET> edts
+M-x package-install <RET> flycheck
+
+if errer of "no match", please try:
+
+M-x package-list-packages, select use-package, edts, flycheck from package list to install.
+
+
+If you want to use EDTS, please add .edts file in the root of Erlang projcet folder.
+.edts
+----------------
+:name "erler"
+:node-sname "erler"
+:lib-dirs '("src" "test")
+:app-include-dirs '("include")
+:otp-path "/usr/local/bin/"
